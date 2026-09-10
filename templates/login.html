@@ -84,10 +84,16 @@
             </button>
         </form>
 
-        <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border-color); font-size: 13px; color: var(--text-muted);">
-            هنوز در سیستم ثبت‌نام نکرده‌اید؟
-            <br>
-            با وارد کردن هر شناسه در کادر بالا، حساب کاربری شما به همراه <b>۱ ماه رایگان</b> فوراً ساخته می‌شود.
+        <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border-color); font-size: 13px; color: var(--text-muted); text-align: center;">
+            <div style="color: var(--warning); margin-bottom: 8px; font-weight: 600;">
+                ⚠️ هنوز در سیستم ثبت‌نام نکرده‌اید؟
+            </div>
+            <p style="margin-bottom: 14px; line-height: 1.7;">
+                ثبت‌نام در بلوپال منحصراً از طریق <b>ربات و مینی‌اپ تلگرام</b> انجام می‌شود تا احراز هویت تضمین گردد.
+            </p>
+            <a href="https://t.me/{{ bot_username }}?start=signup" target="_blank" class="btn btn-outline" style="width: 100%; border-color: rgba(56, 189, 248, 0.4); color: var(--accent); padding: 10px; font-size: 14px;">
+                📱 ثبت‌نام سریع در مینی‌اپ تلگرام
+            </a>
         </div>
     </div>
 </div>
@@ -95,6 +101,14 @@
 
 {% block extra_scripts %}
 <script>
+// Check URL error parameter
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get("error") === "invalid_token") {
+    const alertBox = document.getElementById("alert-box");
+    alertBox.innerText = "لینک ورود مستقیم نامعتبر است یا منقضی شده است. لطفاً مجدداً از مینی‌اپ تلگرام درخواست دهید.";
+    alertBox.style.display = "block";
+}
+
 document.getElementById("login-form").addEventListener("submit", async function(e) {
     e.preventDefault();
     const identifier = document.getElementById("user-identifier").value.trim();
@@ -109,10 +123,16 @@ document.getElementById("login-form").addEventListener("submit", async function(
         });
         const data = await res.json();
         if (data.success) {
-            // Store token or session
             window.location.href = "/dashboard";
         } else {
-            alertBox.innerText = data.message || "خطا در ورود به حساب.";
+            alertBox.innerHTML = `
+                <div>${data.message || "اطلاعات ورود نامعتبر است."}</div>
+                <div style="margin-top: 8px;">
+                    <a href="https://t.me/{{ bot_username }}?start=signup" target="_blank" style="color: var(--accent); font-weight: bold; text-decoration: underline;">
+                        📱 ثبت‌نام در مینی‌اپ تلگرام
+                    </a>
+                </div>
+            `;
             alertBox.style.display = "block";
         }
     } catch (err) {
