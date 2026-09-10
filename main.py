@@ -28,6 +28,23 @@ async def main():
         await bot_app.start()
         if bot_app.updater:
             await bot_app.updater.start_polling()
+
+        # Configure Telegram Menu Button for Mini App
+        try:
+            from telegram import MenuButtonWebApp, WebAppInfo
+            await bot_app.bot.set_chat_menu_button(
+                menu_button=MenuButtonWebApp(
+                    text="مینی‌اپ",
+                    web_app=WebAppInfo(url=f"{config.BASE_URL}/miniapp")
+                )
+            )
+            me = await bot_app.bot.get_me()
+            if me and me.username:
+                config.BOT_USERNAME = me.username
+            logger.info(f"Telegram Chat Menu Button configured for Mini App (@{config.BOT_USERNAME}).")
+        except Exception as e:
+            logger.warning(f"Could not configure Chat Menu Button: {e}")
+
         logger.info("Telegram Bot started successfully.")
     else:
         logger.warning("Telegram Bot skipped (No BOT_TOKEN configured in .env).")

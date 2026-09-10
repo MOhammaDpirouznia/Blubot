@@ -7,6 +7,7 @@ load_dotenv(BASE_DIR / ".env")
 
 # Telegram Bot
 BOT_TOKEN = os.getenv("BOT_TOKEN", "")
+BOT_USERNAME = os.getenv("BOT_USERNAME", "BluPalBot")
 ADMIN_TELEGRAM_ID = int(os.getenv("ADMIN_TELEGRAM_ID", "0"))
 
 # Database
