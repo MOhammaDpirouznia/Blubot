@@ -28,7 +28,10 @@ async def landing_page(request: Request):
     return templates.TemplateResponse(
         request=request,
         name="landing.html",
-        context={"base_url": config.BASE_URL}
+        context={
+            "base_url": config.BASE_URL,
+            "bot_username": config.BOT_USERNAME
+        }
     )
 
 @router.get("/documentation", response_class=HTMLResponse)
@@ -36,7 +39,10 @@ async def documentation_page(request: Request):
     return templates.TemplateResponse(
         request=request,
         name="documentation.html",
-        context={"base_url": config.BASE_URL}
+        context={
+            "base_url": config.BASE_URL,
+            "bot_username": config.BOT_USERNAME
+        }
     )
 
 @router.get("/miniapp", response_class=HTMLResponse)
@@ -120,7 +126,8 @@ async def dashboard_page(request: Request, db: AsyncSession = Depends(get_db)):
             "invoices": invoices,
             "paid_count": paid_count,
             "now": datetime.datetime.utcnow(),
-            "base_url": config.BASE_URL
+            "base_url": config.BASE_URL,
+            "bot_username": config.BOT_USERNAME
         }
     )
 
@@ -150,6 +157,7 @@ async def admin_page(request: Request, db: AsyncSession = Depends(get_db)):
             "total_fees": total_fees,
             "total_volume": total_volume,
             "paid_invoices_count": paid_cnt,
-            "base_url": config.BASE_URL
+            "base_url": config.BASE_URL,
+            "bot_username": config.BOT_USERNAME
         }
     )

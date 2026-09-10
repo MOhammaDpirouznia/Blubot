@@ -71,7 +71,7 @@ async def web_login(payload: LoginRequest, db: AsyncSession = Depends(get_db)):
     if not user:
         return JSONResponse({
             "success": False,
-            "message": "حساب کاربری با این مشخصات یافت نشد! ثبت‌نام در بلوپال فقط از طریق ربات و مینی‌اپ تلگرام انجام می‌شود."
+            "message": "حساب کاربری با این مشخصات یافت نشد! ثبت‌نام در بلوبات فقط از طریق ربات و مینی‌اپ تلگرام انجام می‌شود."
         }, status_code=404)
 
     res = JSONResponse({"success": True, "user_id": user.id})

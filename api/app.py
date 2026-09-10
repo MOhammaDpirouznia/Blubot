@@ -7,6 +7,11 @@ from api.routes_payment_page import router as payment_router
 from api.routes_web import router as web_router
 from api.routes_dashboard_api import router as dashboard_api_router
 
+from pathlib import Path
+from fastapi.staticfiles import StaticFiles
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Initialize DB tables on startup
@@ -15,7 +20,7 @@ async def lifespan(app: FastAPI):
 
 def create_app() -> FastAPI:
     app = FastAPI(
-        title="BluPal Card-to-Card Payment Platform",
+        title="BluBot Card-to-Card Payment Platform",
         description="Automated card-to-card payment gateway powered by BluBank active sessions",
         version="1.0.0",
         lifespan=lifespan
@@ -28,6 +33,11 @@ def create_app() -> FastAPI:
         allow_methods=["*"],
         allow_headers=["*"],
     )
+
+    # Mount static files (logo, assets)
+    static_dir = BASE_DIR / "static"
+    if static_dir.exists():
+        app.mount("/static", StaticFiles(directory=str(static_dir)), name="static")
 
     # Mount Web Frontend and API Routers
     app.include_router(web_router)
