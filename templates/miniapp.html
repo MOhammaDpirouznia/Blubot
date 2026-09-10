@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>مینی‌اپ بلوپال | مدیریت درگاه</title>
+    <title>مینی‌اپ بلوبات | مدیریت درگاه</title>
     <!-- Telegram WebApp SDK -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <!-- Vazirmatn Font CDN -->
@@ -265,9 +265,9 @@
         <!-- Header / Merchant Profile -->
         <div class="header-card">
             <div class="user-info">
-                <div class="user-avatar" id="u-avatar">ب</div>
+                <img src="/static/BluBot-Logo.webp" alt="BluBot Logo" style="width: 46px; height: 46px; border-radius: 12px; object-fit: cover; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);">
                 <div>
-                    <div class="user-name" id="u-name">پذیرنده بلوپال</div>
+                    <div class="user-name" id="u-name">پذیرنده بلوبات</div>
                     <div class="user-sub" id="u-handle">@user</div>
                 </div>
             </div>
@@ -517,7 +517,7 @@
                 const invoices = data.invoices;
 
                 // Profile
-                document.getElementById("u-name").innerText = user.first_name || "پذیرنده بلوپال";
+                document.getElementById("u-name").innerText = user.first_name || "پذیرنده بلوبات";
                 document.getElementById("u-avatar").innerText = (user.first_name || "ب").charAt(0);
                 document.getElementById("u-handle").innerText = user.username ? `@${user.username}` : `ID: ${user.telegram_id}`;
 

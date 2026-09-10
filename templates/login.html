@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}ورود به پنل پذیرندگان | بلوپال{% endblock %}
+{% block title %}ورود به پنل پذیرندگان | بلوبات{% endblock %}
 
 {% block extra_head %}
 <style>
@@ -60,8 +60,10 @@
 {% block content %}
 <div class="login-container">
     <div class="login-box">
-        <div class="logo-badge" style="display: inline-block; margin-bottom: 16px;">blu</div>
-        <h2 style="font-size: 22px; color: white; margin-bottom: 8px;">ورود به داشبورد پذیرندگان</h2>
+        <div style="margin-bottom: 16px;">
+            <img src="/static/BluBot-Logo.webp" alt="BluBot Logo" style="height: 60px; width: auto; border-radius: 14px; box-shadow: 0 4px 20px rgba(37,99,235,0.35);">
+        </div>
+        <h2 style="font-size: 22px; color: white; margin-bottom: 8px;">ورود به داشبورد بلوبات</h2>
         <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 26px;">
             جهت مشاهده فاکتورها، دریافت کلیدهای API و مدیریت وب‌هوک
         </p>
@@ -89,9 +91,9 @@
                 ⚠️ هنوز در سیستم ثبت‌نام نکرده‌اید؟
             </div>
             <p style="margin-bottom: 14px; line-height: 1.7;">
-                ثبت‌نام در بلوپال منحصراً از طریق <b>ربات و مینی‌اپ تلگرام</b> انجام می‌شود تا احراز هویت تضمین گردد.
+                ثبت‌نام در بلوبات منحصراً از طریق <b>ربات و مینی‌اپ تلگرام</b> انجام می‌شود تا احراز هویت تضمین گردد.
             </p>
-            <a href="https://t.me/{{ bot_username }}?start=signup" target="_blank" class="btn btn-outline" style="width: 100%; border-color: rgba(56, 189, 248, 0.4); color: var(--accent); padding: 10px; font-size: 14px;">
+            <a href="https://t.me/{{ bot_username or 'BluBot' }}?start=signup" target="_blank" class="btn btn-outline" style="width: 100%; border-color: rgba(56, 189, 248, 0.4); color: var(--accent); padding: 10px; font-size: 14px;">
                 📱 ثبت‌نام سریع در مینی‌اپ تلگرام
             </a>
         </div>
@@ -128,7 +130,7 @@ document.getElementById("login-form").addEventListener("submit", async function(
             alertBox.innerHTML = `
                 <div>${data.message || "اطلاعات ورود نامعتبر است."}</div>
                 <div style="margin-top: 8px;">
-                    <a href="https://t.me/{{ bot_username }}?start=signup" target="_blank" style="color: var(--accent); font-weight: bold; text-decoration: underline;">
+                    <a href="https://t.me/{{ bot_username or 'BluBot' }}?start=signup" target="_blank" style="color: var(--accent); font-weight: bold; text-decoration: underline;">
                         📱 ثبت‌نام در مینی‌اپ تلگرام
                     </a>
                 </div>

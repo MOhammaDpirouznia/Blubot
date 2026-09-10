@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}داشبورد مدیریت پذیرنده | بلوپال{% endblock %}
+{% block title %}داشبورد مدیریت پذیرنده | بلوبات{% endblock %}
 
 {% block extra_head %}
 <style>
@@ -208,7 +208,7 @@
             </p>
 
             <form id="webhook-form" style="display: flex; flex-direction: column; gap: 12px;">
-                <input type="url" id="webhook-input" class="form-input" style="background: rgba(11,15,25,0.7); border: 1px solid var(--border-color); border-radius: 10px; padding: 10px 14px; color: white; direction: ltr;" placeholder="https://yoursite.com/api/blupal/webhook" value="{{ user.webhook_url or '' }}">
+                <input type="url" id="webhook-input" class="form-input" style="background: rgba(11,15,25,0.7); border: 1px solid var(--border-color); border-radius: 10px; padding: 10px 14px; color: white; direction: ltr;" placeholder="https://yoursite.com/api/blubot/webhook" value="{{ user.webhook_url or '' }}">
                 <div style="display: flex; gap: 10px;">
                     <button type="submit" class="btn btn-primary btn-sm" style="flex: 1;">💾 ذخیره آدرس وب‌هوک</button>
                     <button type="button" class="btn btn-outline btn-sm" onclick="testWebhook()">🧪 ارسال وب‌هوک تستی</button>
@@ -226,7 +226,7 @@
                     {% endif %}
                 </div>
                 <p style="color: var(--text-muted); font-size: 12px; margin-top: 6px;">
-                    برای اتصال یا تغییر کارت، از دستور <b>حساب‌ها و نشست‌ها</b> در <a href="https://t.me/BluPalBot" target="_blank" style="color: var(--accent);">ربات تلگرام</a> استفاده کنید.
+                    برای اتصال یا تغییر کارت، از دستور <b>حساب‌ها و نشست‌ها</b> در <a href="https://t.me/{{ bot_username or 'BluBot' }}" target="_blank" style="color: var(--accent);">ربات تلگرام</a> استفاده کنید.
                 </p>
             </div>
         </div>

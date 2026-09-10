@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}بلوپال | درگاه کارت‌به‌کارت لحظه‌ای و خودکار بلوبانک{% endblock %}
+{% block title %}بلوبات | درگاه کارت‌به‌کارت لحظه‌ای و خودکار بلوبانک{% endblock %}
 
 {% block extra_head %}
 <style>
@@ -132,10 +132,10 @@
         <div class="hero-badge">⚡️ نسل جدید درگاه پرداخت کارت‌به‌کارت</div>
         <h1 class="hero-title">درگاه کارت‌به‌کارت لحظه‌ای<br>بدون وابستگی به گوشی موبایل</h1>
         <p class="hero-desc">
-            بلوپال بین کارت بلوبانک و اپلیکیشن شما قرار می‌گیرد؛ به محض واریز خریدار، تراکنش در همان ثانیه از طریق نشست فعال وب شناسایی شده و وب‌هوک تأیید برای سایت شما ارسال می‌شود.
+            بلوبات بین کارت بلوبانک و اپلیکیشن شما قرار می‌گیرد؛ به محض واریز خریدار، تراکنش در همان ثانیه از طریق نشست فعال وب شناسایی شده و وب‌هوک تأیید برای سایت شما ارسال می‌شود.
         </p>
         <div class="hero-actions">
-            <a href="https://t.me/BluPalBot?start=signup" target="_blank" class="btn btn-primary" style="padding: 12px 26px; font-size: 15px;">
+            <a href="https://t.me/{{ bot_username or 'BluBot' }}?start=signup" target="_blank" class="btn btn-primary" style="padding: 12px 26px; font-size: 15px;">
                 📱 ثبت‌نام در مینی‌اپ تلگرام (ماه اول رایگان)
             </a>
             <a href="/login" class="btn btn-outline" style="padding: 12px 22px; font-size: 15px;">
@@ -143,6 +143,9 @@
             </a>
             <a href="/documentation" class="btn btn-outline" style="padding: 12px 20px; font-size: 15px;">
                 📖 مستندات فنی
+            </a>
+            <a href="https://t.me/{{ bot_username or 'BluBot' }}" target="_blank" class="btn btn-outline" style="padding: 12px 20px; font-size: 15px;">
+                🤖 ربات تلگرام
             </a>
         </div>
     </div>
@@ -241,14 +244,14 @@
     <h2 style="font-size: 28px; color: white; text-align: center; margin-bottom: 30px;">سوالات متداول</h2>
 
     <div class="faq-item">
-        <h4 style="color: white; margin-bottom: 8px;">بلوپال چطور واریزی خریدار را بدون شناسه پرداخت تشخیص می‌دهد؟</h4>
+        <h4 style="color: white; margin-bottom: 8px;">بلوبات چطور واریزی خریدار را بدون شناسه پرداخت تشخیص می‌دهد؟</h4>
         <p style="color: var(--text-muted); font-size: 14px; line-height: 1.8;">
             سیستم برای هر فاکتور در بازه زمانی باز (مثلاً ۲۰ دقیقه)، یک مبلغ رندوم ۲ یا ۳ رقمی به مبلغ فاکتور اضافه می‌کند (مثلاً ۵۰,۱۴۲ تومان). چون این مبلغ در بازه فعال یکتاست، به محض واریز این عدد، فاکتور فوراً تأیید می‌گردد.
         </p>
     </div>
 
     <div class="faq-item">
-        <h4 style="color: white; margin-bottom: 8px;">آیا پول مشتریان به حساب بلوپال می‌رود؟</h4>
+        <h4 style="color: white; margin-bottom: 8px;">آیا پول مشتریان به حساب بلوبات می‌رود؟</h4>
         <p style="color: var(--text-muted); font-size: 14px; line-height: 1.8;">
             خیر! بزرگ‌ترین مزیت سیستم این است که مشتری وجه را مستقیماً به کارت بلوبانک خود شما واریز می‌کند و پلتفرم هیچ دخالتی در وجوه شما ندارد (تسویه ۱۰۰٪ آنی و بدون مسدودی).
         </p>

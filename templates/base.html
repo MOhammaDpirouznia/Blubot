@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}بلوپال | درگاه کارت‌به‌کارت هوشمند و لحظه‌ای{% endblock %}</title>
+    <title>{% block title %}بلوبات | درگاه کارت‌به‌کارت هوشمند و لحظه‌ای{% endblock %}</title>
     <!-- Vazirmatn Font CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
     <style>
@@ -160,18 +160,18 @@
     <header class="navbar">
         <div class="nav-container">
             <a href="/" class="nav-logo">
-                <span class="logo-badge">blu</span>
-                <span>بلوپال</span>
+                <img src="/static/BluBot-Logo.webp" alt="BluBot Logo" style="height: 38px; width: auto; border-radius: 8px; vertical-align: middle;">
+                <span>بلوبات</span>
             </a>
             <ul class="nav-links">
                 <li><a href="/" class="nav-link">صفحه اصلی</a></li>
                 <li><a href="/documentation" class="nav-link">مستندات API</a></li>
                 <li><a href="/dashboard" class="nav-link">داشبورد پذیرنده</a></li>
-                <li><a href="https://t.me/BluPalBot" target="_blank" class="nav-link">ربات تلگرام</a></li>
+                <li><a href="https://t.me/{{ bot_username or 'BluBot' }}" target="_blank" class="nav-link">ربات تلگرام</a></li>
             </ul>
             <div style="display: flex; gap: 10px;">
                 <a href="/login" class="btn btn-outline btn-sm">ورود به پنل</a>
-                <a href="https://t.me/BluPalBot" target="_blank" class="btn btn-primary btn-sm">📱 ثبت‌نام در مینی‌اپ</a>
+                <a href="https://t.me/{{ bot_username or 'BluBot' }}?start=signup" target="_blank" class="btn btn-primary btn-sm">📱 ثبت‌نام در مینی‌اپ</a>
             </div>
         </div>
     </header>
@@ -186,11 +186,11 @@
         <div class="footer-container">
             <div>
                 <div class="nav-logo" style="margin-bottom: 12px;">
-                    <span class="logo-badge">blu</span>
-                    <span>بلوپال | درگاه کارت‌به‌کارت لحظه‌ای</span>
+                    <img src="/static/BluBot-Logo.webp" alt="BluBot Logo" style="height: 34px; width: auto; border-radius: 8px; vertical-align: middle;">
+                    <span>بلوبات | درگاه کارت‌به‌کارت لحظه‌ای</span>
                 </div>
                 <p style="color: var(--text-muted); font-size: 14px; max-width: 420px; line-height: 1.8;">
-                    بلوپال واسط هوشمند بین کارت بانکی شما و اپلیکیشن شماست. با بهره‌گیری از نشست فعال وب بلوبانک، تراکنش‌های واریزی بدون نیاز به فورواردر پیامک یا گوشی اختصاصی، در همان لحظه تأیید می‌شوند.
+                    بلوبات واسط هوشمند بین کارت بانکی شما و اپلیکیشن شماست. با بهره‌گیری از نشست فعال وب بلوبانک، تراکنش‌های واریزی بدون نیاز به فورواردر پیامک یا گوشی اختصاصی، در همان لحظه تأیید می‌شوند.
                 </p>
             </div>
             <div>
@@ -205,13 +205,13 @@
             <div>
                 <h4 style="color: white; margin-bottom: 14px;">پشتیبانی و ارتباط</h4>
                 <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 14px;">
-                    <li><a href="https://t.me/BluPalBot" target="_blank" style="color: var(--text-muted); text-decoration: none;">ربات پشتیبانی تلگرام</a></li>
+                    <li><a href="https://t.me/{{ bot_username or 'BluBot' }}" target="_blank" style="color: var(--text-muted); text-decoration: none;">ربات پشتیبانی تلگرام</a></li>
                     <li><a href="/admin" style="color: var(--text-muted); text-decoration: none;">پنل مدیریت کل</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            تمامی حقوق محفوظ است © ۱۴۰۵ بلوپال — پلتفرم هوشمند پرداخت کارت‌به‌کارت
+            تمامی حقوق محفوظ است © ۱۴۰۵ بلوبات (BluBot) — پلتفرم هوشمند پرداخت کارت‌به‌کارت
         </div>
     </footer>
 
