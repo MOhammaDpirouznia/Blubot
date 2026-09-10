@@ -7,11 +7,12 @@ load_dotenv(BASE_DIR / ".env")
 
 # Telegram Bot
 BOT_TOKEN = os.getenv("BOT_TOKEN", "")
-BOT_USERNAME = os.getenv("BOT_USERNAME", "BluPalBot")
+BOT_USERNAME = os.getenv("BOT_USERNAME", "BluBot")
 ADMIN_TELEGRAM_ID = int(os.getenv("ADMIN_TELEGRAM_ID", "0"))
 
-# Database
-DATABASE_URL = os.getenv("DATABASE_URL", f"sqlite+aiosqlite:///{BASE_DIR}/blupal.db")
+# Database (support blubot.db or existing blupal.db)
+default_db_file = "blubot.db" if (BASE_DIR / "blubot.db").exists() or not (BASE_DIR / "blupal.db").exists() else "blupal.db"
+DATABASE_URL = os.getenv("DATABASE_URL", f"sqlite+aiosqlite:///{BASE_DIR}/{default_db_file}")
 
 # Server & Public URLs
 SERVER_HOST = os.getenv("SERVER_HOST", "0.0.0.0")

@@ -14,7 +14,7 @@ logging.basicConfig(
 logger = logging.getLogger("main")
 
 async def main():
-    logger.info("Initializing BluPal Platform...")
+    logger.info("Initializing BluBot Platform...")
 
     # 1. Initialize SQLite / PostgreSQL database tables
     await init_db()
@@ -29,19 +29,26 @@ async def main():
         if bot_app.updater:
             await bot_app.updater.start_polling()
 
-        # Configure Telegram Menu Button for Mini App
+        # Discover Bot Username and Configure Telegram Menu Button for Mini App
         try:
-            from telegram import MenuButtonWebApp, WebAppInfo
-            await bot_app.bot.set_chat_menu_button(
-                menu_button=MenuButtonWebApp(
-                    text="مینی‌اپ",
-                    web_app=WebAppInfo(url=f"{config.BASE_URL}/miniapp")
-                )
-            )
             me = await bot_app.bot.get_me()
             if me and me.username:
                 config.BOT_USERNAME = me.username
-            logger.info(f"Telegram Chat Menu Button configured for Mini App (@{config.BOT_USERNAME}).")
+                logger.info(f"Bot connected successfully as: @{config.BOT_USERNAME}")
+
+            if config.BASE_URL.startswith("https://"):
+                from telegram import MenuButtonWebApp, WebAppInfo
+                await bot_app.bot.set_chat_menu_button(
+                    menu_button=MenuButtonWebApp(
+                        text="مینی‌اپ",
+                        web_app=WebAppInfo(url=f"{config.BASE_URL}/miniapp")
+                    )
+                )
+                logger.info(f"Telegram Chat Menu Button set to Mini App ({config.BASE_URL}/miniapp).")
+            else:
+                logger.info(
+                    f"BASE_URL is '{config.BASE_URL}'. Note: Telegram Mini Apps require HTTPS (e.g. cloudflare tunnel or domain with SSL) to open in-app. In HTTP mode, link opens in browser."
+                )
         except Exception as e:
             logger.warning(f"Could not configure Chat Menu Button: {e}")
 
@@ -71,7 +78,7 @@ async def main():
             await bot_app.updater.stop()
             await bot_app.stop()
             await bot_app.shutdown()
-        logger.info("BluPal Platform shut down gracefully.")
+        logger.info("BluBot Platform shut down gracefully.")
 
 if __name__ == "__main__":
     asyncio.run(main())

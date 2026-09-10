@@ -97,7 +97,7 @@ async def test_all():
         assert resp.status_code == 404, f"Expected 404 for unregistered user, got {resp.status_code}"
         body = resp.json()
         assert body["success"] is False
-        assert "ثبت‌نام در بلوپال فقط از طریق ربات و مینی‌اپ" in body["message"]
+        assert "ثبت‌نام در بلوبات فقط از طریق ربات و مینی‌اپ" in body["message"]
         print("✅ Web registration correctly blocked: Unregistered user received 404 with Telegram signup message.")
 
         # Ensure user was NOT created in database
@@ -181,7 +181,7 @@ async def test_all():
             miniapp_page_resp = await client.get("/miniapp")
             assert miniapp_page_resp.status_code == 200
             assert "telegram-web-app.js" in miniapp_page_resp.text
-            assert "مینی‌اپ بلوپال" in miniapp_page_resp.text
+            assert "مینی‌اپ بلوبات" in miniapp_page_resp.text
             print("✅ /miniapp rendered with 200 OK and Telegram WebApp script.")
 
         finally:
