@@ -4,6 +4,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from database.connection import init_db
 from api.routes_invoices import router as invoices_router
 from api.routes_payment_page import router as payment_router
+from api.routes_web import router as web_router
+from api.routes_dashboard_api import router as dashboard_api_router
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -27,16 +29,11 @@ def create_app() -> FastAPI:
         allow_headers=["*"],
     )
 
+    # Mount Web Frontend and API Routers
+    app.include_router(web_router)
+    app.include_router(dashboard_api_router)
     app.include_router(invoices_router)
     app.include_router(payment_router)
-
-    @app.get("/")
-    async def root():
-        return {
-            "name": "BluPal Automated Gateway API",
-            "status": "online",
-            "documentation": "/docs"
-        }
 
     return app
 
