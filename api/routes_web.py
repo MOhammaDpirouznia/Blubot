@@ -10,6 +10,7 @@ import config
 from database.connection import get_db
 from database.models import User, BankSession, Invoice, WalletLedger
 from database.crud import get_user_sessions, get_user_invoices
+from core.telegram_auth import consume_magic_link_token
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 templates = Jinja2Templates(directory=str(BASE_DIR / "templates"))
@@ -38,6 +39,33 @@ async def documentation_page(request: Request):
         context={"base_url": config.BASE_URL}
     )
 
+@router.get("/miniapp", response_class=HTMLResponse)
+async def miniapp_page(request: Request):
+    return templates.TemplateResponse(
+        request=request,
+        name="miniapp.html",
+        context={
+            "base_url": config.BASE_URL,
+            "bot_username": config.BOT_USERNAME
+        }
+    )
+
+@router.get("/auth/verify")
+async def verify_magic_link(token: str):
+    user_id = consume_magic_link_token(token)
+    if not user_id:
+        return RedirectResponse(url="/login?error=invalid_token")
+
+    res = RedirectResponse(url="/dashboard")
+    res.set_cookie(
+        key="blupal_user_id",
+        value=str(user_id),
+        httponly=True,
+        max_age=86400 * 30,
+        samesite="lax"
+    )
+    return res
+
 @router.get("/login", response_class=HTMLResponse)
 async def login_page(request: Request):
     user_id = get_session_user_id(request)
@@ -46,7 +74,10 @@ async def login_page(request: Request):
     return templates.TemplateResponse(
         request=request,
         name="login.html",
-        context={"base_url": config.BASE_URL}
+        context={
+            "base_url": config.BASE_URL,
+            "bot_username": config.BOT_USERNAME
+        }
     )
 
 @router.get("/logout")
